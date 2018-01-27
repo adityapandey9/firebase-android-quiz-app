@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Quiz Time</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [hidden]="!space">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+  </div>
+  <div id="question">
+    <p>{{currentQuestion.question}}</p>
+  </div>
+  <div [hidden]="!iswrong" id="error">
+    <p>Please choose correct options. If you don't know google it!!</p>
+  </div>
+  <ion-list *ngFor="let item of currentQuestion.answer">
+    <ion-item no-lines>
+      <ion-label>{{ item }}</ion-label>
+      <ion-checkbox color="primary" (ionChange)="clicked(item)" checked="false"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="submitit()">Submit</button>
+</ion-content>

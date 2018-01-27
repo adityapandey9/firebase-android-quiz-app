@@ -1,0 +1,45 @@
+<!--
+  Generated template for the TopscorePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>top score</ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="default">
+        <ion-segment-button value="nation">
+          Top Nation
+        </ion-segment-button>
+        <ion-segment-button value="science">
+          Top Science
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div [ngSwitch]="default">
+        <ion-list *ngSwitchCase="'nation'">
+          <div *ngFor="let item of topNation; let j = index">
+            <ion-item (click)="explain(j, item.type)">
+              <h6 class="index" item-start>{{j+1}}</h6>
+              <h2>Points: {{item.points}}/{{item.total}}</h2>
+              <p>Total Number of Tried: {{item.tried}}</p>
+            </ion-item>
+          </div>
+        </ion-list>
+    
+        <ion-list *ngSwitchCase="'science'">
+            <div *ngFor="let item of topScience; let j = index">
+                <ion-item (click)="explain(j, item.type)">
+                  <h6 class="index" item-start>{{j+1}}</h6>
+                  <h2>Points: {{item.points}}/{{item.total}}</h2>
+                  <p>Total Number of Tried: {{item.tried}}</p>
+                </ion-item>
+              </div>
+        </ion-list>
+    </div>
+</ion-content>

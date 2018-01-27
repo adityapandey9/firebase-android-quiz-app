@@ -1,0 +1,52 @@
+<ion-content no-bounce>
+  <ion-slides pager="true">
+    <ion-slide>
+        <div class="pyro">
+            <div class="before"></div>
+            <div class="after"></div>
+        </div>
+        <div class="score">
+          <h2 class="slide-title">Your Score</h2>
+          <h1 class="slide-title">{{score.points}}/{{total}}</h1>
+          <p>{{scoreMsg}}</p>
+        </div>
+    </ion-slide>
+    <ion-slide *ngFor="let item of question; let j = index">
+      <h2 class="slide-title" [innerHTML]="item.question"></h2>
+      <div class="correct"> 
+        <!-- It is for the correct answers -->
+        <div *ngIf="isString(item.correct)">
+          <h6>Correct Answer: </h6>
+          <p [innerHTML]="item.correct"></p>
+        </div> 
+        <div *ngIf="!isString(item.correct)"> 
+            <h6>Correct Answers: </h6>
+            <ion-list *ngFor="let ans of item.correct">
+              <p [innerHTML]="ans"></p>
+            </ion-list>
+        </div>
+      </div>
+      <div class="response">
+            <div *ngIf="!isString(userResponse[j].response)">
+                <h6 *ngIf="userResponse[j].response.length == 1">Your Answer: </h6>
+                <h6 *ngIf="userResponse[j].response.length > 1">Your Answers: </h6>
+                <ion-list *ngFor="let ans of userResponse[j].response">
+                  <p [innerHTML]="ans"></p>
+                </ion-list>
+            </div>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/ica-slidebox-img-4.png" class="slide-image" />
+      <h2 class="slide-title">What you want now?</h2>
+      <button ion-button icon-end large clear (click)="startGame()">
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+      <button ion-button icon-start large clear (click)="startHome()">
+        <ion-icon name="home"></ion-icon>  
+        Home
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
